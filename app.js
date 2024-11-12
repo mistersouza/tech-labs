@@ -1,8 +1,7 @@
 // Full Documentation - https://docs.turbo360.co
 const vertex = require('vertex360')({ site_id: process.env.TURBO_APP_ID })
 const express = require('express')
-
-const app = express() // initialize app
+const app = express()
 
 /*  Apps are configured with settings as shown in the conig object below.
     Options include setting views directory, static assets directory,
@@ -23,11 +22,14 @@ const config = {
 
 vertex.configureApp(app, config)
 
+// Middleware should be here, early in the file
+app.use(express.urlencoded({ extended: true }))
+
 // import routes
 const index = require('./routes/index')
-const api = require('./routes/api') // sample API Routes
 
-// set routes
+// Then your routes and other middleware follow
 app.use('/', index)
 
 module.exports = app
+

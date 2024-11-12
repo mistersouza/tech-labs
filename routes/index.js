@@ -21,4 +21,10 @@ router.get('/:profileId/:username', (request, response) => {
   })
 })
 
+router.post('/post', (request, response) => {
+    response.json({
+    data: request.body
+  })
+})
+
 module.exports = router
