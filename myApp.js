@@ -7,11 +7,24 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 
 let Person = require('./models/Person'); 
 
-  done(null /*, data*/);
+const createAndSavePerson = (done) => {
+  const person = new Person({
+    name: "Thiago Souza",
+    age: 41,
+    favoriteFoods: ["Pizza", "Sushi"],
+    email: "mistersouza@icloud.com"
+  })
+  person.save((error, data) => {
+    if (error) return done(error);
+    done(null, data);
+  })
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  Person.create(arrayOfPeople, (error, people) => {
+    if (error) return done(error);
+    done(null, people);
+  })
 };
 
 const findPeopleByName = (personName, done) => {

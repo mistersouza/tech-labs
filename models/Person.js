@@ -12,15 +12,10 @@ const personSchema = new mongoose.Schema({
     favoriteFoods: {
         type: [String],
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-    },
     createdAt: {
         type: Date,
         default: Date.now,
     },
 });
 
-module.exports = mongoose.model('Person', personSchema);
+module.exports = mongoose.model('Person', personSchema)
